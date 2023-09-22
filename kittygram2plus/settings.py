@@ -139,11 +139,15 @@ REST_FRAMEWORK = {
         # Не будем подключать класс AnonRateThrottle глобально.
         # Подключим его только в тех view-классах или вьюсетах,
         # где надо установить лимиты для анонимов
+        'rest_framework.throttling.ScopedRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
         # Но сами лимиты установим, и они будут доступны из всего кода проекта
         'user': '10000/day', #  Лимит для UserRateThrottle
         'anon': '1000/day',  #  Лимит для AnonRateThrottle
+        # Имена (ключи) для scope придумывает разработчик,
+        # в меру собственной фантазии
+        'low_request': '1/minute',
     }
 }
 
